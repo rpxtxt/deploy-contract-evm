@@ -11,6 +11,7 @@ show() {
     esac
 }
 
+# Langsung install dependencies saat script dijalankan
 install_dependencies() {
     if [ ! -d ".git" ]; then
         show "Initializing Git repository..." "progress"
@@ -82,21 +83,23 @@ EOL
 }
 
 menu() {
-    echo -e "\n1) Install dependencies"
-    echo "2) Input required details"
-    echo "3) Deploy contract"
-    echo "4) Exit"
+    echo -e "\n1) Input required details"
+    echo "2) Deploy contract"
+    echo "3) Exit"
 
     read -p "Enter your choice: " CHOICE
     case $CHOICE in
-        1) install_dependencies ;;
-        2) input_details ;;
-        3) deploy_contract ;;
-        4) exit 0 ;;
+        1) input_details ;;
+        2) deploy_contract ;;
+        3) exit 0 ;;
         *) show "Invalid choice." "error" ;;
     esac
 }
 
+# Otomatis install dependencies saat script dijalankan
+install_dependencies
+
+# Menampilkan menu untuk user
 while true; do
     menu
 done
